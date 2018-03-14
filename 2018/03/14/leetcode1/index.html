@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="LeetCode," />
+  <meta name="keywords" content="LeetCode,Stephen Hawking,Median,python," />
 
 
 
@@ -87,7 +87,7 @@
 
 
 <meta name="description" content="The real death is that no one in the world remembers you. Coco(2017) 写在前面的话：今天霍金先生离开了人世，去另一个世界继续探寻宇宙的真谛了。在我看来，霍金先生是一位活在历史中的巨人，无论是其贡献还是人生的传奇性，都值得人们铭记。我相信百年之后，人们依然会听到他的故事，就像被苹果砸醒的牛顿和不好好上班而推导相对论的爱因斯坦。 这">
-<meta name="keywords" content="LeetCode">
+<meta name="keywords" content="LeetCode,Stephen Hawking,Median,python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LeetCode笔记1：#4 Median of Two Sorted Arrays">
 <meta property="og:url" content="http://yoursite.com/2018/03/14/leetcode1/index.html">
@@ -95,7 +95,7 @@
 <meta property="og:description" content="The real death is that no one in the world remembers you. Coco(2017) 写在前面的话：今天霍金先生离开了人世，去另一个世界继续探寻宇宙的真谛了。在我看来，霍金先生是一位活在历史中的巨人，无论是其贡献还是人生的传奇性，都值得人们铭记。我相信百年之后，人们依然会听到他的故事，就像被苹果砸醒的牛顿和不好好上班而推导相对论的爱因斯坦。 这">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2018/03/14/leetcode1/hawking.jpg">
-<meta property="og:updated_time" content="2018-03-14T07:24:40.842Z">
+<meta property="og:updated_time" content="2018-03-14T07:34:08.768Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode笔记1：#4 Median of Two Sorted Arrays">
 <meta name="twitter:description" content="The real death is that no one in the world remembers you. Coco(2017) 写在前面的话：今天霍金先生离开了人世，去另一个世界继续探寻宇宙的真谛了。在我看来，霍金先生是一位活在历史中的巨人，无论是其贡献还是人生的传奇性，都值得人们铭记。我相信百年之后，人们依然会听到他的故事，就像被苹果砸醒的牛顿和不好好上班而推导相对论的爱因斯坦。 这">
@@ -365,23 +365,22 @@
 <blockquote><p>The real death is that no one in the world remembers you.</p>
 <footer><strong>Coco(2017)</strong></footer></blockquote>
 <p>写在前面的话：今天霍金先生离开了人世，去另一个世界继续探寻宇宙的真谛了。在我看来，霍金先生是一位活在历史中的巨人，无论是其贡献还是人生的传奇性，都值得人们铭记。我相信百年之后，人们依然会听到他的故事，就像被苹果砸醒的牛顿和不好好上班而推导相对论的爱因斯坦。</p>
-<p>这是刷LeetCode遇到的第一道Hard级别的题目，题目描述很简单，但是却不容易想到精巧的解决办法。自己越想越复杂，看了答案之后才感到豁然开朗，因此记录一下高票答案的思路。<br><a id="more"></a></p>
+<p>这篇博文是我刷LeetCode遇到的第一道Hard级别的题目，题目描述很简单，但是却不容易想到精巧的解决办法。自己越想越复杂，看了答案之后才感到豁然开朗，因此记录一下高票答案的思路。<br><a id="more"></a></p>
 <h1 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h1><p>There are two sorted arrays <strong>nums1</strong> and <strong>nums2</strong> of size <strong>m</strong> and <strong>n</strong> respectively.</p>
 <p>Find the median of the two sorted arrays. The overall run time complexity should be <strong>O(log (m+n))</strong>.</p>
 <h2 id="Example-1"><a href="#Example-1" class="headerlink" title="Example 1"></a>Example 1</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">nums1 = [1, 3]</span><br><span class="line">nums2 = [2]</span><br><span class="line"></span><br><span class="line">The median is 2.0</span><br></pre></td></tr></table></figure>
 <h2 id="Example-2"><a href="#Example-2" class="headerlink" title="Example 2"></a>Example 2</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">nums1 = [1, 2]</span><br><span class="line">nums2 = [3, 4]</span><br><span class="line"></span><br><span class="line">The median is (2 + 3)/2 = 2.5</span><br></pre></td></tr></table></figure>
 <h2 id="中文描述"><a href="#中文描述" class="headerlink" title="中文描述"></a>中文描述</h2><p>简单来说就是有两个已经排序好的数列<strong>nums1</strong>和<strong>nums2</strong>，长度分别为<strong>m</strong>和<strong>n</strong>。我们要做的是在<strong>O(log (m+n))</strong>的时间复杂度之内找出这两个数列合起来之后的中位数。</p>
-<p>#Solution</p>
-<p>##Idea<br>相信要找出他们的中位数并不难，难的是如何在对数复杂度的情况下找到中位数。很多人，比如我，就因为陷入了如何分割数列被各种边界条件折磨得痛不欲生，却没有想到中位数真正的作用。</p>
+<h1 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h1><h2 id="Idea"><a href="#Idea" class="headerlink" title="Idea"></a>Idea</h2><p>相信要找出他们的中位数并不难，难的是如何在对数复杂度的情况下找到中位数。很多人，比如我，就因为陷入了如何分割数列被各种边界条件折磨得痛不欲生，却没有想到中位数真正的作用。</p>
 <blockquote>
 <p>In statistics, the median is used for dividing a set into two equal length subsets, that one subset is always greater than the other</p>
 </blockquote>
 <p>不管数列长度是奇数还是偶数，中位数都是为了将一个数列划分为两个长度相等的子数列，且一个子数列的所有成员都大于另一个。</p>
 <p>因此，我们首先随机在数列A中找到一个位置<strong>i</strong>, (<strong>i ∈ [0,m]</strong>);在数列B中找到一个位置<strong>j</strong>, (<strong>j ∈ [0,n]</strong>).</p>
-<pre><code>left_part          |        right_part
--------------------|---------------------
-</code></pre><p>A[0], A[1], …, A[i-1]  |  A[i], A[i+1], …, A[m-1]<br>B[0], B[1], …, B[j-1]  |  B[j], B[j+1], …, B[n-1]</p>
-<p>这样，我们就将两个数列划分为两个部分，只要我们满足以下两个条件，就能找到中位数。</p>
+<pre><code>      left_part          |        right_part
+A[0], A[1], ..., A[i-1]  |  A[i], A[i+1], ..., A[m-1]
+B[0], B[1], ..., B[j-1]  |  B[j], B[j+1], ..., B[n-1]
+</code></pre><p>这样，我们就将两个数列划分为两个部分，只要我们满足以下两个条件，就能找到中位数。</p>
 <blockquote>
 <p>1 len(left_part) == len(right_part) (<strong>m+n</strong>为偶数)<br>   len(left_part) == len(right_part) + 1 (<strong>m+n</strong>为奇数)<br>2 max(left_part) &lt;= min(right_part)</p>
 </blockquote>
@@ -394,8 +393,7 @@
 <blockquote>
 <p><strong>max(A[i-1],B[j-1])</strong>, (当<strong>m+n</strong>为奇数时)<br><strong>(max(A[i-1], B[j-1]) + min(A[i], B[j]))/2</strong> (当<strong>m+n</strong>为偶数时)</p>
 </blockquote>
-<p>##Code</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">median</span><span class="params">(A, B)</span>:</span></span><br><span class="line">    m, n = len(A), len(B)</span><br><span class="line">    <span class="keyword">if</span> m &gt; n:</span><br><span class="line">        A, B, m, n = B, A, n, m</span><br><span class="line">    <span class="keyword">if</span> n == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">raise</span> ValueError</span><br><span class="line"></span><br><span class="line">    imin, imax, half_len = <span class="number">0</span>, m, (m + n + <span class="number">1</span>) / <span class="number">2</span></span><br><span class="line">    <span class="keyword">while</span> imin &lt;= imax:</span><br><span class="line">        i = (imin + imax) / <span class="number">2</span></span><br><span class="line">        j = half_len - i</span><br><span class="line">        <span class="keyword">if</span> i &lt; m <span class="keyword">and</span> B[j<span class="number">-1</span>] &gt; A[i]:</span><br><span class="line">            <span class="comment"># i is too small, must increase it</span></span><br><span class="line">            imin = i + <span class="number">1</span></span><br><span class="line">        <span class="keyword">elif</span> i &gt; <span class="number">0</span> <span class="keyword">and</span> A[i<span class="number">-1</span>] &gt; B[j]:</span><br><span class="line">            <span class="comment"># i is too big, must decrease it</span></span><br><span class="line">            imax = i - <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="comment"># i is perfect</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> i == <span class="number">0</span>: max_of_left = B[j<span class="number">-1</span>]</span><br><span class="line">            <span class="keyword">elif</span> j == <span class="number">0</span>: max_of_left = A[i<span class="number">-1</span>]</span><br><span class="line">            <span class="keyword">else</span>: max_of_left = max(A[i<span class="number">-1</span>], B[j<span class="number">-1</span>])</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (m + n) % <span class="number">2</span> == <span class="number">1</span>:</span><br><span class="line">                <span class="keyword">return</span> max_of_left</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> i == m: min_of_right = B[j]</span><br><span class="line">            <span class="keyword">elif</span> j == n: min_of_right = A[i]</span><br><span class="line">            <span class="keyword">else</span>: min_of_right = min(A[i], B[j])</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> (max_of_left + min_of_right) / <span class="number">2.0</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">median</span><span class="params">(A, B)</span>:</span></span><br><span class="line">    m, n = len(A), len(B)</span><br><span class="line">    <span class="keyword">if</span> m &gt; n:</span><br><span class="line">        A, B, m, n = B, A, n, m</span><br><span class="line">    <span class="keyword">if</span> n == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">raise</span> ValueError</span><br><span class="line"></span><br><span class="line">    imin, imax, half_len = <span class="number">0</span>, m, (m + n + <span class="number">1</span>) / <span class="number">2</span></span><br><span class="line">    <span class="keyword">while</span> imin &lt;= imax:</span><br><span class="line">        i = (imin + imax) / <span class="number">2</span></span><br><span class="line">        j = half_len - i</span><br><span class="line">        <span class="keyword">if</span> i &lt; m <span class="keyword">and</span> B[j<span class="number">-1</span>] &gt; A[i]:</span><br><span class="line">            <span class="comment"># i is too small, must increase it</span></span><br><span class="line">            imin = i + <span class="number">1</span></span><br><span class="line">        <span class="keyword">elif</span> i &gt; <span class="number">0</span> <span class="keyword">and</span> A[i<span class="number">-1</span>] &gt; B[j]:</span><br><span class="line">            <span class="comment"># i is too big, must decrease it</span></span><br><span class="line">            imax = i - <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="comment"># i is perfect</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> i == <span class="number">0</span>: max_of_left = B[j<span class="number">-1</span>]</span><br><span class="line">            <span class="keyword">elif</span> j == <span class="number">0</span>: max_of_left = A[i<span class="number">-1</span>]</span><br><span class="line">            <span class="keyword">else</span>: max_of_left = max(A[i<span class="number">-1</span>], B[j<span class="number">-1</span>])</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (m + n) % <span class="number">2</span> == <span class="number">1</span>:</span><br><span class="line">                <span class="keyword">return</span> max_of_left</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> i == m: min_of_right = B[j]</span><br><span class="line">            <span class="keyword">elif</span> j == n: min_of_right = A[i]</span><br><span class="line">            <span class="keyword">else</span>: min_of_right = min(A[i], B[j])</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> (max_of_left + min_of_right) / <span class="number">2.0</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -414,6 +412,12 @@
         <div class="post-tags">
           
             <a href="/tags/LeetCode/" rel="tag"><i class="fa fa-tag"></i> LeetCode</a>
+          
+            <a href="/tags/Stephen-Hawking/" rel="tag"><i class="fa fa-tag"></i> Stephen Hawking</a>
+          
+            <a href="/tags/Median/" rel="tag"><i class="fa fa-tag"></i> Median</a>
+          
+            <a href="/tags/python/" rel="tag"><i class="fa fa-tag"></i> python</a>
           
         </div>
       
@@ -542,7 +546,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
@@ -591,7 +595,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Description"><span class="nav-number">1.</span> <span class="nav-text">Description</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Example-1"><span class="nav-number">1.1.</span> <span class="nav-text">Example 1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Example-2"><span class="nav-number">1.2.</span> <span class="nav-text">Example 2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#中文描述"><span class="nav-number">1.3.</span> <span class="nav-text">中文描述</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Description"><span class="nav-number">1.</span> <span class="nav-text">Description</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Example-1"><span class="nav-number">1.1.</span> <span class="nav-text">Example 1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Example-2"><span class="nav-number">1.2.</span> <span class="nav-text">Example 2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#中文描述"><span class="nav-number">1.3.</span> <span class="nav-text">中文描述</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Solution"><span class="nav-number">2.</span> <span class="nav-text">Solution</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Idea"><span class="nav-number">2.1.</span> <span class="nav-text">Idea</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Code"><span class="nav-number">2.2.</span> <span class="nav-text">Code</span></a></li></ol></li></ol></div>
             
 
           </div>
